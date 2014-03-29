@@ -27,3 +27,8 @@ That's all the scaffolding you technically need.
 
     server = app.listen(3000);
 
+That's it, but it's the sucker way.
+
+## Use the generator
+
+1. 
