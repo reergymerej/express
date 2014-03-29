@@ -46,3 +46,24 @@ This happened because I tried to install without `sudo`, so the installation fai
 3. `npm install`
 
 That's it.
+
+## Add Ext JS
+
+* download it
+* extract it to /meen/public/javascripts/
+
+It's all available by navigating to http://localhost:3000/javascripts/ext-4.2.1.883/, but a lot of it is docs and examples.
+
+### Get just the good stuff.
+
+Q: If I make a new dir in /public, is it automatically accessible?
+A: Yep.
+
+### Move all the Ext stuff into public so it can be referenced later.
+
+Q: What are the key sources I need from the Ext download?
+A: everything under resources, src, and one of the ext*.js files
+
+Q: How do you add a script to the head using Jade?
+A: `script(src='foo/bar.js')`
+
