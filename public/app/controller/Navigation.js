@@ -6,7 +6,8 @@ Ext.define('MEEN.controller.Navigation', {
     ],
 
     models: [
-        'MEEN.model.NavItem'
+        'MEEN.model.NavItem',
+        'MEEN.model.Plugin'
     ],
 
     refs: [
@@ -52,10 +53,38 @@ Ext.define('MEEN.controller.Navigation', {
             }
         });
 
+        Ext.create('Ext.data.Store', {
+            storeId: 'plugins',
+            model: 'MEEN.model.Plugin',
+            autoLoad: true,
+            listeners: {
+                load: this.loadPlugins
+            }
+        });
+    },
+
+    loadPlugins: function (pluginStore) {
+        var pluginApps = [];
+
+        pluginStore.each(function (plugin) {
+            pluginApps.push(plugin.get('class'));
+        });
+
+        Ext.require(pluginApps, function () {
+            console.log('plugins loaded');
+
+            Ext.Array.each(pluginApps, function (pluginTree) {
+                pluginTree = Ext.create(pluginTree);
+                
+                Ext.StoreManager.get('nav-items').getRootNode().appendChild(pluginTree.getRootNode());
+            });
+
+        })
     },
 
     buildNavTree: function (navPanel) {
         navPanel.createNavTree(Ext.StoreManager.get('nav-items'));
+        // navPanel.createNavTree(Ext.StoreManager.get('plugins'));
     },
 
     onNewClick: function () {

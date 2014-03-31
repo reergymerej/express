@@ -1,9 +1,11 @@
+Ext.Loader.setConfig({
+    disableCaching: false
+});
+
 Ext.application({
     name: 'MEEN',
 
-    models: [
-        'MEEN.model.NavItem'
-    ],
+    models: [],
 
     views: [
         'MEEN.view.Header',
